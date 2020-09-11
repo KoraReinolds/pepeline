@@ -1,0 +1,91 @@
+$main100: #D1D5FF;
+$main200: #A4ACFF;
+$main300: #7682FF;
+$main400: #4959FF;
+$main500: #1B2FFF;
+$main600: #1626CC;
+$main700: #101C99;
+$main800: #0B1366;
+$main900: #050933;
+
+$base0: #FCFCFC;
+$base50: #F3F4F7;
+$base100: #CCD3DA;
+$base200: #99A7B5;
+$base300: #677B8F;
+$base400: #344F6A;
+$base500: #012345;
+$base600: #011C37;
+$base700: #011529;
+$base800: #000E1C;
+$base900: #00070E;
+
+$secondary100: #FDD2EC;
+$secondary200: #FCA5D9;
+$secondary300: #FA77C6;
+$secondary400: #F84AB3;
+$secondary500: #F71D9F;
+$secondary600: #C51780;
+$secondary700: #941160;
+$secondary800: #630C40;
+$secondary900: #310620;
+
+$grid-breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1920px,
+);
+
+@mixin header1 {
+  font-family: Codec Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 14px;
+  color: $base500;
+}
+
+@mixin text1 {
+  font-family: Codec Pro;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 148%;
+  color: $base300;
+}
+
+@mixin price1 {
+  font-family: Codec Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 148%;
+  color: $secondary400;
+}
+
+@mixin header2 {
+  font-family: Codec Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 120%;
+  color: $base500;
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    font-size: 24px;
+  }
+}
+
+@mixin addBntText {
+  font-family: Codec Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 140%;
+  color: $main400;
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    font-size: 16px;
+  }
+}
+
