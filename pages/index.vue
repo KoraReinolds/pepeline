@@ -1,4 +1,4 @@
-{{<template>
+<template>
   <div :class="$style.main">
     <div :class="$style.nav">
       <div :class="$style.filter">
@@ -40,14 +40,14 @@ export default {
 <style module lang="scss">
 .main {
   box-sizing: border-box;
-  margin: 144px 64px 48px 64px;
   padding: 56px 64px;
+  margin: 0px 64px 48px 64px;
   border-radius: 48px;
   background: $base50;
   @media (max-width: map-get($grid-breakpoints, sm)) {
-    margin: 108px 0 20px 0;
-    padding: 25px 16px 24px 16px;
-    border-radius: 24px;
+    margin: 8px 0 20px 0;
+    padding: 0 16px;
+    border-radius: 0 16px 24px 16px;
   }
   .nav {
     width: 100%;
@@ -55,11 +55,13 @@ export default {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: map-get($grid-breakpoints, sm)) {
+      height: 80px;
+    }
     .filter {
       display: flex;
       align-items: center;
-      height: 48px;
-      @include header2;
+      @include font($weight: bold, $size: 40px, $color: $base500, $mob_size: 24px);
       .arrow-down-icon {
         margin-left: 18px;
         @media (max-width: map-get($grid-breakpoints, sm)) {
@@ -74,7 +76,7 @@ export default {
     .new {
       display: flex;
       align-items: center;
-      @include addBntText;
+      @include font($weight: bold, $size: 20px, $color: $main400, $mob_size: 16px);
       .add-btn-icon {
         margin-left: 20px;
         @media (max-width: map-get($grid-breakpoints, sm)) {
@@ -89,6 +91,7 @@ export default {
     padding-top: 40px;
     display: grid;
     @media (max-width: map-get($grid-breakpoints, sm)) {
+      padding-top: 0px;
       grid-template-columns: repeat( 1, 100% );
       grid-gap: 12px;
     }

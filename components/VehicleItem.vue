@@ -1,17 +1,33 @@
 <template>
-  <div :class="$style.item">
-    <img :class="$style.image" :src="vehicle.preview">
-    <div :class="$style.info">
-      <div :class="$style.name">{{ vehicle.name }}</div>
-      <div :class="$style.description">{{ vehicle.description }}</div>
-      <div :class="$style.rent">{{ vehicle.rent }} $/h</div>
-    </div>
+  <div
+    @mouseover="hover = true"
+    @mouseleave="hover = false"
+  >
+    <nuxt-link
+      :class="[$style.item, { [$style.hover]: hover }]"
+      :to="{
+        name: 'detail-id',
+        params: { id: vehicle.id },
+        component: 'pages/detail/_id.vue',
+        props: true
+      }"
+    >
+      <img :class="$style.image" :src="vehicle.preview">
+      <div :class="$style.info">
+        <div :class="$style.name">{{ vehicle.name }}</div>
+        <div :class="$style.description">{{ vehicle.description }}</div>
+        <div :class="$style.rent">{{ vehicle.rent }} $/h</div>
+      </div>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
   name: 'VehicleItem',
+  data: () => ({
+    hover: false,
+  }),
   props: {
     vehicle: Object,
   }
@@ -20,13 +36,21 @@ export default {
 
 <style module lang="scss">
   .item {
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+
     min-width: 33%;
     height: 164px;
     background: $base0;
     border-radius: 32px;
     display: flex;
+    transition: transform 0.1s;
     @media (max-width: map-get($grid-breakpoints, sm)) {
       height: 151px;
+    }
+    &.hover {
+      transform: scale(1.05);
     }
     .image {
       margin: 24px 24px auto 32px;
@@ -48,7 +72,7 @@ export default {
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-top: 32px;
         }
-        @include header1;
+        @include font($weight: bold, $size: 16px, $color: $base500);
       }
       .description {
         overflow: hidden;
@@ -57,14 +81,14 @@ export default {
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-top: 12px;
         }
-        @include text1;
+        @include font($weight: 300, $size: 12px, $color: $base300);
       }
       .rent {
         margin-top: 16px;
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-top: 16px;
         }
-        @include price1;
+        @include font($weight: bold, $size: 14px, $color: $secondary400);
       }
     }
   }

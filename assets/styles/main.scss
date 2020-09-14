@@ -38,54 +38,20 @@ $grid-breakpoints: (
   xl: 1920px,
 );
 
-@mixin header1 {
-  font-family: Codec Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 14px;
-  color: $base500;
-}
-
-@mixin text1 {
-  font-family: Codec Pro;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 148%;
-  color: $base300;
-}
-
-@mixin price1 {
-  font-family: Codec Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 148%;
-  color: $secondary400;
-}
-
-@mixin header2 {
-  font-family: Codec Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 120%;
-  color: $base500;
+@mixin font(
+    $weight: bold,
+    $size: 16px,
+    $mob_size: 16px,
+    $color: $base500,
+    $family: Codec Pro,
+    $style: normal
+  ) {
+  font-family: $family;
+  font-style: $style;
+  font-weight: $weight;
+  font-size: $size;
+  color: $color;
   @media (max-width: map-get($grid-breakpoints, sm)) {
-    font-size: 24px;
+    font-size: $mob_size;
   }
 }
-
-@mixin addBntText {
-  font-family: Codec Pro;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 140%;
-  color: $main400;
-  @media (max-width: map-get($grid-breakpoints, sm)) {
-    font-size: 16px;
-  }
-}
-
