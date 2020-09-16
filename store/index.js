@@ -8,6 +8,7 @@ export const state = () => ({
   curVehicle: null,
   filterType: '',
   types: [],
+  addMode: false,
 })
 export const getters = {
   VEHICLES: state => {
@@ -19,8 +20,12 @@ export const getters = {
   },
   DETAIL_VEHICLE: state => state.curVehicle,
   VEHICLE_TYPES: state => state.types,
+  ADD_MODE: state => state.addMode,
 }
 export const mutations = {
+  SET_ADD_MODE(state, val) {
+    state.addMode = val;
+  },
   SET_VEHICLES(state, list) {
     state.vehiclesList = list;
     state.types = list.reduce((types, { type }) => types.add(type), new Set())

@@ -18,6 +18,7 @@
       </div>
       <div
         :class="$style.new"
+        @click="$store.commit('SET_ADD_MODE', true)"
       >
         <span>Add new</span>
         <AddBtnIcon :class="$style['add-btn-icon']"/>

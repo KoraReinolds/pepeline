@@ -2,6 +2,9 @@
   <div class="wrapper">
     <Header />
     <Nuxt />
+    <!-- <Header :class="{ blur: $store.getters.ADD_MODE }" />
+    <Nuxt :class="{ blur: $store.getters.ADD_MODE }" /> -->
+    <!-- <AddVehicle /> -->
 </div>
 </template>
 
@@ -18,6 +21,10 @@ html {
   box-sizing: border-box;
   min-height: 100vh;
 }
+
+// .blur {
+//   filter: blur(32px);
+// }
 
 .wrapper {
   width: 100%;
