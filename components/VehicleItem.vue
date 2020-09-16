@@ -6,10 +6,8 @@
     <nuxt-link
       :class="[$style.item, { [$style.hover]: hover }]"
       :to="{
-        name: 'detail-id',
-        params: { id: vehicle.id },
-        component: 'pages/detail/_id.vue',
-        props: true
+        name: 'detail-id-type',
+        params: { id: vehicle.id, type: 'Specifications' },
       }"
     >
       <img :class="$style.image" :src="vehicle.preview">
@@ -42,7 +40,7 @@ export default {
 
     min-width: 33%;
     height: 164px;
-    background: $base0;
+    background: var(--base0);
     border-radius: 32px;
     display: flex;
     transition: transform 0.1s;
@@ -72,7 +70,7 @@ export default {
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-top: 32px;
         }
-        @include font($weight: bold, $size: 16px, $color: $base500);
+        @include font($weight: bold, $size: 16px, $color: var(--base500));
       }
       .description {
         overflow: hidden;
@@ -81,14 +79,14 @@ export default {
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-top: 12px;
         }
-        @include font($weight: 300, $size: 12px, $color: $base300);
+        @include font($weight: 300, $size: 12px, $color: var(--base300));
       }
       .rent {
         margin-top: 16px;
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-top: 16px;
         }
-        @include font($weight: bold, $size: 14px, $color: $secondary400);
+        @include font($weight: bold, $size: 14px, $color: var(--secondary400));
       }
     }
   }

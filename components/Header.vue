@@ -4,9 +4,13 @@
   >
     <Logo :class="$style.logo"/>
     <div :class="$style.description">World's first affordable airsharing</div>
-    <div :class="$style.theme">
-      <Moon :class="[$style.moon, $style.icon]" />
-      <span :class="$style.text">Night mod</span>
+    <div
+      :class="$style.theme"
+      @click="changeTheme"
+    >
+      <Sun v-if="$nuxt.$colorMode.preference === 'dark'" :class="[$style.sun, $style.icon]" />
+      <Moon v-else-if="$nuxt.$colorMode.preference === 'light'" :class="[$style.moon, $style.icon]" />
+      <span :class="$style.text">{{ $nuxt.$colorMode.preference === 'dark' ? 'Day' : 'Night' }} mod</span>
     </div>
     <Chat :class="[$style.chat, $style.icon]" />
     <Notifications :class="[$style.notifications, $style.icon]" />
@@ -26,6 +30,7 @@
 <script>
 import Logo from '~/assets/svg/logo.svg?inline';
 import Moon from '~/assets/svg/moon.svg?inline';
+import Sun from '~/assets/svg/sun.svg?inline';
 import Chat from '~/assets/svg/chat.svg?inline';
 import Notifications from '~/assets/svg/notifications.svg?inline';
 
@@ -34,22 +39,29 @@ export default {
   components: {
     Logo,
     Moon,
+    Sun,
     Chat,
     Notifications,
+  },
+  methods: {
+    changeTheme() {
+      this.$nuxt.$colorMode.preference = this.$nuxt.$colorMode.preference === 'light' ? 'dark' : 'light';
+    }
   },
 }
 </script>
 
 <style module lang="scss">
   .header {
-    height: 56px;
-    margin: 48px 64px 40px 64px;
+    min-height: 56px;
+    padding: 48px 64px 40px 64px;
     display: flex;
     align-items: center;
     @media (max-width: map-get($grid-breakpoints, sm)) {
-      margin: 12px 16px;
+      padding: 12px 16px;
     }
     .icon {
+      cursor: pointer;
       width: 24px;
       height: 24px;
       @media (max-width: map-get($grid-breakpoints, xs)) {
@@ -66,13 +78,14 @@ export default {
       }
     }
     .description {
-      @include font($weight: 300, $size: 16px, $color: $base300);
+      @include font($weight: 300, $size: 16px, $color: var(--base300));
       margin-left: 64.9px;
       @media (max-width: map-get($grid-breakpoints, lg)) {
         display: none;
       }
     }
     .theme {
+      cursor: pointer;
       display: flex;
       justify-content: flex-start;
       align-items: center;
@@ -83,11 +96,13 @@ export default {
         margin-right: 16px;
       }
       text-align: left;
+      .sun,
       .moon {
         width: auto;
       }
       .text {
-        @include font($weight: 300, $size: 16px, $color: $base300);
+        user-select: none;
+        @include font($weight: 300, $size: 16px, $color: var(--base300));
         margin-left: 18px;
         @media (max-width: map-get($grid-breakpoints, md)) {
           display: none;
@@ -121,7 +136,7 @@ export default {
       }
       .name {
         margin-right: 16px;
-        @include font($weight: bold, $size: 16px, $color: $base500);
+        @include font($weight: bold, $size: 16px, $color: var(--base500));
         @media (max-width: map-get($grid-breakpoints, sm)) {
           display: none;
         }

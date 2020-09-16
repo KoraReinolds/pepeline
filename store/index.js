@@ -6,17 +6,30 @@ Vue.use(Vuex)
 export const state = () => ({
   vehiclesList: [],
   curVehicle: null,
+  filterType: '',
+  types: [],
 })
 export const getters = {
-  VEHICLES: state => state.vehiclesList,
+  VEHICLES: state => {
+    if (state.filterType) {
+      return state.vehiclesList.filter(vec => vec.type === state.filterType);
+    } else {
+      return state.vehiclesList;
+    }
+  },
   DETAIL_VEHICLE: state => state.curVehicle,
+  VEHICLE_TYPES: state => state.types,
 }
 export const mutations = {
   SET_VEHICLES(state, list) {
     state.vehiclesList = list;
+    state.types = list.reduce((types, { type }) => types.add(type), new Set())
   },
   SET_CUR_VEHICLE(state, vec) {
     state.curVehicle = vec;
+  },
+  FILTER_VEHICLES(state, type) {
+    state.filterType = type;
   }
 }
 export const actions = {

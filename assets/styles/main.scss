@@ -1,34 +1,70 @@
-$main100: #D1D5FF;
-$main200: #A4ACFF;
-$main300: #7682FF;
-$main400: #4959FF;
-$main500: #1B2FFF;
-$main600: #1626CC;
-$main700: #101C99;
-$main800: #0B1366;
-$main900: #050933;
+:root {
+  --main100: #D1D5FF;
+  --main200: #A4ACFF;
+  --main300: #7682FF;
+  --main400: #4959FF;
+  --main500: #1B2FFF;
+  --main600: #1626CC;
+  --main700: #101C99;
+  --main800: #0B1366;
+  --main900: #050933;
 
-$base0: #FCFCFC;
-$base50: #F3F4F7;
-$base100: #CCD3DA;
-$base200: #99A7B5;
-$base300: #677B8F;
-$base400: #344F6A;
-$base500: #012345;
-$base600: #011C37;
-$base700: #011529;
-$base800: #000E1C;
-$base900: #00070E;
+  --base0: #FCFCFC;
+  --base50: #F3F4F7;
+  --base100: #CCD3DA;
+  --base200: #99A7B5;
+  --base300: #677B8F;
+  --base400: #344F6A;
+  --base500: #012345;
+  --base600: #011C37;
+  --base700: #011529;
+  --base800: #000E1C;
+  --base900: #00070E;
+  
+  --secondary100: #FDD2EC;
+  --secondary200: #FCA5D9;
+  --secondary300: #FA77C6;
+  --secondary400: #F84AB3;
+  --secondary500: #F71D9F;
+  --secondary600: #C51780;
+  --secondary700: #941160;
+  --secondary800: #630C40;
+  --secondary900: #310620;
+}
 
-$secondary100: #FDD2EC;
-$secondary200: #FCA5D9;
-$secondary300: #FA77C6;
-$secondary400: #F84AB3;
-$secondary500: #F71D9F;
-$secondary600: #C51780;
-$secondary700: #941160;
-$secondary800: #630C40;
-$secondary900: #310620;
+html.dark-mode {
+  --main100: #D1D5FF;
+  --main200: #A4ACFF;
+  --main300: #7682FF;
+  --main400: #4959FF;
+  --main500: #1B2FFF;
+  --main600: #1626CC;
+  --main700: #101C99;
+  --main800: #0B1366;
+  --main900: #050933;
+
+  --base500: #FCFCFC;
+  --base600: #F3F4F7;
+  --base100: #CCD3DA;
+  --base300: #99A7B5;
+  --base200: #677B8F;
+  --base400: #344F6A;
+  --base0: #012345;
+  --base50: #011C37;
+  --base700: #011529;
+  --base800: #000E1C;
+  --base900: #00070E;
+  
+  --secondary100: #FDD2EC;
+  --secondary200: #FCA5D9;
+  --secondary300: #FA77C6;
+  --secondary400: #F84AB3;
+  --secondary500: #F71D9F;
+  --secondary600: #C51780;
+  --secondary700: #941160;
+  --secondary800: #630C40;
+  --secondary900: #310620;
+}
 
 $grid-breakpoints: (
   xs: 576px,
@@ -41,10 +77,11 @@ $grid-breakpoints: (
 @mixin font(
     $weight: bold,
     $size: 16px,
-    $mob_size: 16px,
-    $color: $base500,
+    $mob_size: $size,
+    $color: var(--base500),
     $family: Codec Pro,
-    $style: normal
+    $line_height: 100%,
+    $style: normal,
   ) {
   font-family: $family;
   font-style: $style;
@@ -54,4 +91,25 @@ $grid-breakpoints: (
   @media (max-width: map-get($grid-breakpoints, sm)) {
     font-size: $mob_size;
   }
+}
+
+.btn {
+  user-select: none;
+  cursor: pointer;
+  background: var(--main400);
+  @include font($weight: bold, $size: 16px, $color: #FCFCFC, $line_height: 14px);
+  padding: 17px 32px;
+  border-radius: 12px;
+  &:hover {
+    background: var(--main600);
+  }
+  @media (max-width: map-get($grid-breakpoints, sm)) {
+    font-size: 12px;
+    padding: 16px 24px;
+  }
+}
+
+.image {
+  user-select: none;
+  object-fit: cover;
 }

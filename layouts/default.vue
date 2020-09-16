@@ -2,7 +2,7 @@
   <div class="wrapper">
     <Header />
     <Nuxt />
-  </div>
+</div>
 </template>
 
 <style lang="scss">
@@ -30,6 +30,7 @@ body,
 #__layout,
 #__nuxt {
   min-height: 100vh;
+  background: var(--base0);
 }
 
 *,
@@ -37,5 +38,9 @@ body,
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+a {
+  text-decoration: none;
 }
 </style>

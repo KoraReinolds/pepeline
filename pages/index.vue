@@ -1,11 +1,24 @@
 <template>
   <div :class="$style.main">
     <div :class="$style.nav">
-      <div :class="$style.filter">
-        <span>Rent <span :class="$style.target">whatever</span></span>
+      <div
+        :class="$style.filter"
+      >
+        <span>Rent <span :class="$style.target">{{ selected || 'whatever' }}</span></span>
         <ArrowDownIcon :class="$style['arrow-down-icon']"/>
+        <select v-model="selected">
+          <option disabled value="">Выберите тип</option>
+          <option
+            v-for="opt in $store.getters.VEHICLE_TYPES"
+            :key="opt"
+          >
+            {{ opt }}
+          </option>
+        </select>
       </div>
-      <div :class="$style.new">
+      <div
+        :class="$style.new"
+      >
         <span>Add new</span>
         <AddBtnIcon :class="$style['add-btn-icon']"/>
       </div>
@@ -16,6 +29,10 @@
         :vehicle="vec"
         :key="vec.id"
       />
+    </div>
+    <div
+      :class="$style.new_vehicle"
+    >
     </div>
   </div>
 </template>
@@ -34,6 +51,20 @@ export default {
     ArrowDownIcon,
     AddBtnIcon,
   },
+  data: () => ({
+    selectedValue: '',
+  }),
+  computed: {
+    selected: {
+      get() {
+        return this.selectedValue;
+      },
+      set(value) {
+        this.$store.commit('FILTER_VEHICLES', value);
+        this.selectedValue = value;
+      }
+    }
+  },
 }
 </script>
 
@@ -43,7 +74,7 @@ export default {
   padding: 56px 64px;
   margin: 0px 64px 48px 64px;
   border-radius: 48px;
-  background: $base50;
+  background: var(--base50);
   @media (max-width: map-get($grid-breakpoints, sm)) {
     margin: 8px 0 20px 0;
     padding: 0 16px;
@@ -59,9 +90,18 @@ export default {
       height: 80px;
     }
     .filter {
+      user-select: none;
+      position: relative;
       display: flex;
       align-items: center;
-      @include font($weight: bold, $size: 40px, $color: $base500, $mob_size: 24px);
+      @include font($weight: bold, $size: 40px, $color: var(--base500), $mob_size: 24px);
+      select {
+        cursor: pointer;
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        position: absolute;
+      }
       .arrow-down-icon {
         margin-left: 18px;
         @media (max-width: map-get($grid-breakpoints, sm)) {
@@ -70,14 +110,25 @@ export default {
         }
       }
       .target {
-        color: $main400;
+        color: var(--main400);
       }
     }
     .new {
+      user-select: none;
       display: flex;
       align-items: center;
-      @include font($weight: bold, $size: 20px, $color: $main400, $mob_size: 16px);
+      cursor: pointer;
+      &:hover {
+        color: var(--main600);
+        .add-btn-icon rect {
+          fill: var(--main600);
+        }
+      }
+      @include font($weight: bold, $size: 20px, $color: var(--main400), $mob_size: 16px);
       .add-btn-icon {
+        rect {
+          fill: var(--main400);
+        }
         margin-left: 20px;
         @media (max-width: map-get($grid-breakpoints, sm)) {
           margin-left: 12px;
